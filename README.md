@@ -1,39 +1,64 @@
 # DIVINE
 
-> Working title: **SCARLANDS**
+**Current phase:** Stage 1 — Terrain Combat Prototype
 
-DIVINE is a browser-first survival/action-RPG project built around one core idea:
+> A survival-ARPG where you reshape the land itself with magic so that you can survive the night, while every scar you leave in the world attracts something that has adapted to it.
 
-> **A survival-ARPG where you reshape the land itself with magic so that you can survive the night, while every scar you leave in the world attracts something that has adapted to it.**
+Stage 0 is locked. Stage 1 is an intentionally ugly grey-box prototype whose only job is to answer:
 
-## Current status
+> **Is reshaping terrain during combat actually fun?**
 
-**Stage 0 — Game Thesis: COMPLETE / GO**
+## Controls
 
-Stage 0 exists to lock the game before implementation. No gameplay code belongs in this stage.
+- `WASD` — move
+- `LMB` — Chain Lightning
+- `RMB` — Terrace (raise 3×3 terrain)
+- `Q` — Hollow (dig 3×3 terrain)
+- `1–6` — load scripted experiments E1–E6
+- `N` — toggle enemy navigation paths
+- `Alt + mouse wheel` — floor slice
+- `R` — restart the current experiment
+- `T` — download telemetry JSON
 
-The next gate is **Stage 1 — Core Loop Prototype**, which asks exactly one question:
+## Implemented in Stage 1
 
-> **Is reshaping the ground during a fight fun?**
+- Three.js 3/4 prototype renderer, fixed 45° yaw / ~52° pitch camera
+- 64×64 terraced height grid, 1.5m tiles and 1.5m height steps
+- Shared health/mana economy
+- Chain Lightning, Terrace, Hollow
+- Permanent fulgurite scars and +15% lightning damage on scarred ground
+- Unstable terrain that decays after 45 seconds
+- Husk melee AI with A* navigation, one-step clamber, windup attacks, terrain-triggered path invalidation
+- Fixed 20Hz simulation with command-based input
+- Terrain event queue and dirty-region rebuilds
+- Rapier WASM physics bridge with terrain collider rebuilds
+- 16×16 render/terrain chunk scaffold
+- World-state serialization round trip
+- Scenario loader, nav overlay, telemetry and performance HUD
+- CI tests for the navigation hard guarantee
 
-If the answer is no, the project revisits the thesis instead of hiding the problem under loot, crafting, biomes, or content.
+## Deliberately blocked
 
-## Design pillars
+No inventory, gear, loot, XP, crafting, professions, survival meters, biomes, day/night, bosses, mythology content, procedural generation, farming, shelters, map screen, additional spells, character art, or multiplayer until the Stage 1 gate passes.
 
-1. **Magic Is Terrain** — spells alter the world, not just enemy health bars.
-2. **The Land Remembers** — player changes persist and matter.
-3. **Every Light Is Yours** — the world is dark; magic creates visual language and safety.
-4. **Earned, Not Given** — power comes primarily from crafting, professions, and rare finds.
-5. **Distance Is a Real Cost** — travel requires preparation.
+## Run
 
-## Repository map
+```bash
+npm install
+npm run dev
+```
 
-- [`docs/STAGE_0_GAME_THESIS.md`](docs/STAGE_0_GAME_THESIS.md) — master source of truth; all locked Stage 0 decisions.
-- [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md) — concise list of locked decisions.
-- [`docs/ARCHITECTURE_CONTRACT.md`](docs/ARCHITECTURE_CONTRACT.md) — technical rules Stage 1+ must not violate.
-- [`docs/ART_DIRECTION.md`](docs/ART_DIRECTION.md) — visual language and biblical war-mythology guardrails.
-- [`docs/STAGE_1_CHARTER.md`](docs/STAGE_1_CHARTER.md) — exact next build gate and deliberate exclusions.
+Verification:
 
-## Current rule
+```bash
+npm run lint
+npm test
+npm run build
+```
 
-Do **not** begin gear, inventory, survival meters, crafting, professions, biomes, bosses, farming, procedural generation, or multiplayer before the Stage 1 gate is passed.
+## Source of truth
+
+- [`docs/STAGE_0_GAME_THESIS.md`](docs/STAGE_0_GAME_THESIS.md)
+- [`docs/STAGE_1_CHARTER.md`](docs/STAGE_1_CHARTER.md)
+- [`docs/STAGE_1_SPEC.md`](docs/STAGE_1_SPEC.md)
+- [`docs/ARCHITECTURE_CONTRACT.md`](docs/ARCHITECTURE_CONTRACT.md)

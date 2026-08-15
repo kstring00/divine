@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>DIVINE — Stage 1 Terrain Combat Prototype</title>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game" aria-label="Divine Stage 1 terrain combat prototype"></canvas>
+    <div id="hud">
+      <section class="stage-card"><span>DIVINE · STAGE 1</span><strong>Terrain Combat Prototype</strong><small id="scenarioLabel">E1 — Baseline</small></section>
+      <section class="vitals">
+        <div><label>HP</label><div class="bar"><i id="hpFill"></i></div><b id="hpText">100</b></div>
+        <div><label>MANA</label><div class="bar mana"><i id="manaFill"></i></div><b id="manaText">100</b></div>
+      </section>
+      <section class="spell-help">
+        <div><kbd>LMB</kbd><b>Chain Lightning</b><small>18 mana · damage + fulgurite scar</small></div>
+        <div><kbd>RMB</kbd><b>Terrace</b><small>30 mana · raise 3×3</small></div>
+        <div><kbd>Q</kbd><b>Hollow</b><small>25 mana · dig 3×3</small></div>
+      </section>
+      <section class="target-card"><span id="targetText">TARGET —</span><small id="sliceText">Floor slice: ALL</small></section>
+      <section class="telemetry">
+        <div><span>Lightning</span><b id="lightningCasts">0</b></div><div><span>Terrain</span><b id="terrainCasts">0</b></div><div><span>Edit repaths</span><b id="repathCount">0</b></div><div><span>Tick</span><b id="tickMs">0.0 ms</b></div><div><span>Frame</span><b id="frameMs">0.0 ms</b></div>
+      </section>
+      <section class="debug-help"><b>WASD</b> move · <b>1–6</b> experiments · <b>N</b> nav · <b>Alt+Wheel</b> floor slice · <b>R</b> restart · <b>T</b> telemetry</section>
+      <div id="banner"></div>
+      <div id="death" class="hidden"><div><span>PROTOTYPE FAILURE STATE</span><h1>You died.</h1><p>Press <kbd>R</kbd> to restart the current experiment.</p></div></div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
